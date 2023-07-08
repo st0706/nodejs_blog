@@ -2,9 +2,9 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
+const route = require('./routes');
 const app = express();
 const port = 3000;
-const route = require('./routes');
 
 app.use(morgan('combined'));
 
@@ -24,6 +24,7 @@ app.set('views', path.join(__dirname, 'resources', 'views'));
 
 //Route init
 route(app);
+
 app.get('/', (req, res) => {
     res.render('home')
 })
