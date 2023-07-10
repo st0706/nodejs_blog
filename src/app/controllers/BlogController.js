@@ -1,7 +1,12 @@
 class BlogController {
-    //[GET] /me
+    //[GET] /blogs/create
     create(req, res, next) {
         res.render('blogs/create-blog')
+    }
+
+    //[GET] /blogs/view-blog
+    view(req, res, next) {
+        res.render('blogs/view-blog')
     }
 }
 

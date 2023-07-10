@@ -13,13 +13,21 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" />
     <title>Blog</title>
+    <!-- Box-icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
     <div class="app">
-        {{> header}}
+        {{#if isLoginView}}
+        {{> header_authenticated}}
         {{{body}}}
         {{> footer}}
+        {{else}}
+        {{> header_unauthenticated}}
+        {{{body}}}
+        {{> footer}}
+        {{/if}}
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
