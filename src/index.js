@@ -3,8 +3,27 @@ const path = require('path');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const route = require('./routes');
+const db = require('./config/db');
 const app = express();
 const port = 3000;
+
+const flash = require('express-flash');
+const session = require('express-session');
+
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.use(flash());
+
+var bodyParser = require('body-parser')
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 app.use(morgan('combined'));
 
@@ -12,6 +31,9 @@ app.use(express.urlencoded({
     extended: true
 }))
 app.use(express.json());
+
+//Connect to db
+db.connect();
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.engine(

@@ -7,43 +7,74 @@
                         <div class="card-body p-5">
                             <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
-                            <form>
-
+                            <form method="POST" action="/authen/users/store" onsubmit="checkForm(event)">
                                 <div class="form-outline mb-4">
-                                    <input type="text" class="form-control form-control-lg" placeholder="Name Acount" />
+                                    <input id="username" name="username" type="text"
+                                        class="form-control form-control-lg" placeholder="Name Acount" />
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="email" class="form-control form-control-lg" placeholder="Your Email" />
-
+                                    <input id="email" name="email" type="email" class="form-control form-control-lg"
+                                        placeholder="Your Email" />
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" class="form-control form-control-lg"
-                                        placeholder="Password" />
+                                    <input id="password" name="password" type="password"
+                                        class="form-control form-control-lg" placeholder="Password" />
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <input type="password" class="form-control form-control-lg"
-                                        placeholder="Repeat your password" />
+                                    <input id="repeat-password" type="password" class="form-control form-control-lg"
+                                        placeholder="Repeat your password" onchange="checkPassword()" />
+                                </div>
+                                <div id="password-alert" style="display: none; text-align: center;"
+                                    class="alert alert-danger" role="alert">
+                                    Passwords do not match
                                 </div>
 
 
                                 <div class="d-flex justify-content-center">
-                                    <button type="button"
+                                    <button type="submit"
                                         class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
                                         style="background-color: rgb(139, 139, 246);">Register</button>
                                 </div>
-
-                                <p class="text-center text-muted mt-5 mb-0">Have already an account?
-                                    <a href="/authen/login" class="fw-bold text-body"><u>Login here</u></a>
-                                </p>
                             </form>
+                            <p class="text-center text-muted mt-5 mb-0">Have already an account?
+                                <a href="/authen/login" class="fw-bold text-body"><u>Login here</u></a>
+                            </p>
 
+                            {{!-- Thông báo tài khoản đã tồn tại --}}
+                            {{#if flash.error}}
+                            <div style="text-align: center;" class="alert alert-danger " role="alert">{{flash.error}}
+                            </div>
+                            {{/if}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
+
+<script>
+    function checkPassword() {
+        var password = document.getElementById("password").value;
+        var repeatPassword = document.getElementById("repeat-password").value;
+
+        if (password !== repeatPassword) {
+            event.preventDefault();
+            document.getElementById("password-alert").style.display = "block";
+        } else {
+            document.getElementById("password-alert").style.display = "none";
+        }
+    }
+    function checkForm(event) {
+        var password = document.getElementById("password").value;
+        var repeatPassword = document.getElementById("repeat-password").value;
+
+        if (password !== repeatPassword) {
+            event.preventDefault(); // Hủy sự kiện submit form
+            document.getElementById("password-alert").style.display = "block";
+        }
+    }
+
+</script>
