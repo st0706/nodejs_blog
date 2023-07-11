@@ -125,15 +125,18 @@
 }
 .home {
   width: 100%;
-  min-height: 550px;
-  background: url("/img/banner2.png");
+  min-height: 700px;
+  background-size: cover;
+  background-image: url("/img/banner2.jpg");
+  background-position: -500% 50%;
   display: grid;
+  background-repeat: no-repeat;
   justify-content: center;
   align-items: center;
 }
 
 .home-text {
-  color: #fff;
+  color: #3c3c3c;
   text-align: center;
 }
 
