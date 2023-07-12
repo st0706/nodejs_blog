@@ -11,9 +11,10 @@ const flash = require('express-flash');
 const session = require('express-session');
 
 app.use(session({
-    secret: 'your-secret-key',
+    secret: 'mynodejsblogabc123@@@',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 5 }
 }));
 
 app.use(flash());

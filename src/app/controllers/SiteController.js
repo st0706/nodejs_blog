@@ -1,12 +1,21 @@
 class SiteController {
     //[GET] /
     index(req, res, next) {
-        res.render('home')
+        if (req.session.username) {
+            res.render('home', { isLoginView: true, username: req.session.username });
+        } else {
+            res.render('home');
+        }
     }
 
-    //[GET] /isLogin
-    isLogin(req, res, next) {
-        res.render('home', { isLoginView: true })
+    //[GET] /logout
+    logout(req, res, next) {
+        req.session.destroy(err => {
+            if (err) {
+                console.log(err);
+            }
+            res.redirect('/');
+        });
     }
 }
 

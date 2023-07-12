@@ -16,7 +16,8 @@ class LoginController {
         })
             .then(data => {
                 if (data) {
-                    res.redirect('/isLogin');
+                    req.session.username = data.username
+                    res.redirect('/');
                 }
                 else {
                     req.flash('error', 'Tài khoản không đúng');
