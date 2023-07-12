@@ -1,29 +1,11 @@
 <section class="vh-100 login">
   <style>
-    .login {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-    .background-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("/img/blog-background.jpg");
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
-    .container {
-      background-color: #fff;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
+    .login { display: flex; justify-content: center; align-items: center;
+    position: relative; } .background-image { position: absolute; top: 0; left:
+    0; width: 100%; height: 100%; background-image:
+    url("/img/blog-background.jpg"); background-size: cover; background-repeat:
+    no-repeat; } .container { background-color: #fff; border-radius: 20px;
+    padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
   </style>
   <div class="background-image"></div>
   <div class="container" style="margin: auto; max-width:500px; z-index:10;">
@@ -33,59 +15,66 @@
       <form method="POST" action="/authen/users/login">
         <!-- Username input -->
         <div class="form-outline mb-4">
-          <input type="username" name="username" class="form-control form-control-lg" placeholder="Username" />
+          <input
+            type="username"
+            name="username"
+            class="form-control form-control-lg"
+            placeholder="Username"
+          />
         </div>
 
         <!-- Password input -->
         <div class="form-outline mb-4">
-          <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" />
+          <input
+            type="password"
+            name="password"
+            class="form-control form-control-lg"
+            placeholder="Password"
+          />
         </div>
 
         <div class="d-flex align-items-center justify-content-between mb-4">
-          <a href="/authen/signup" style="text-decoration: underline;">Create account</a>
-          <a href="#!" style="text-decoration: underline; font-style: italic; color: red;">Forgot password?</a>
+          <a href="/authen/signup" style="text-decoration: underline;">Create
+            account</a>
+          <a
+            href="#!"
+            style="text-decoration: underline; font-style: italic; color: red;"
+          >Forgot password?</a>
         </div>
 
         <!-- Submit button -->
         <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
       </form>
-
+      {{#if flash.error}}
+        <div style="margin: 10px; text-align:center " class="alert alert-danger" role="alert">
+          {{flash.error}}
+        </div>
+      {{/if}}
       <div class="divider d-flex align-items-center my-4">
         <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
       </div>
 
-      <a class="btn btn-primary btn-lg btn-block" style="background-color: #f7f4f4; color: #0d0000" href="#!"
-        role="button">
+      <a
+        class="btn btn-primary btn-lg btn-block"
+        style="background-color: #f7f4f4; color: #0d0000"
+        href="#!"
+        role="button"
+      >
         <i class="fa-brands fa-google"></i>
         Continue with Gmail
       </a>
     </div>
   </div>
 
-  {{!-- Khi đăng ký thành công --}}
+  {{! Khi đăng ký thành công }}
   <style>
-    .success {
-      position: fixed;
-      top: 90px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 10px;
-      background-color: #dff0d8;
-      border: 1px solid #d0e9c6;
-      border-radius: 5px;
-      color: #3c763d;
-      font-size: 16px;
-    }
+    .success { position: fixed; top: 90px; left: 50%; transform:
+    translateX(-50%); padding: 10px; background-color: #dff0d8; border: 1px
+    solid #d0e9c6; border-radius: 5px; color: #3c763d; font-size: 16px; }
   </style>
   {{#if flash.success}}
-  <div class="alert-box success">
-    {{flash.success}}
-  </div>
-  {{/if}}
-
-  {{#if flash.error}}
-  <div class="alert alert-danger" role="alert">
-    {{flash.error}}
-  </div>
+    <div class="alert-box success">
+      {{flash.success}}
+    </div>
   {{/if}}
 </section>
