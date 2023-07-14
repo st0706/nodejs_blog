@@ -20,12 +20,12 @@
 
                                 <div class="form-outline mb-4">
                                     <input id="password" name="password" type="password"
-                                        class="form-control form-control-lg" placeholder="Password" required/>
+                                        class="form-control form-control-lg" placeholder="Password" required />
                                 </div>
 
                                 <div class="form-outline mb-4">
                                     <input id="repeat-password" type="password" class="form-control form-control-lg"
-                                        placeholder="Repeat your password" onchange="checkPassword()" required/>
+                                        placeholder="Repeat your password" onchange="checkPassword()" required />
                                 </div>
                                 <div id="password-alert" style="display: none; text-align: center;"
                                     class="alert alert-danger" role="alert">
@@ -40,7 +40,8 @@
                                 </div>
                             </form>
                             {{#if flash.error}}
-                            <div style="text-align: center; margin: 10px;" class="alert alert-danger " role="alert">{{flash.error}}
+                            <div style="text-align: center; margin: 10px;" class="alert alert-danger " role="alert">
+                                {{flash.error}}
                             </div>
                             {{/if}}
                             <p class="text-center text-muted mt-5 mb-0">Have already an account?
@@ -48,7 +49,7 @@
                             </p>
 
                             {{!-- Thông báo tài khoản đã tồn tại --}}
-                            
+
                         </div>
                     </div>
                 </div>

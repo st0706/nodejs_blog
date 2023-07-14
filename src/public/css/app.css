@@ -132,7 +132,7 @@
   min-height: 700px;
   background-size: cover;
   background-image: url("/img/banner2.jpg");
-  background-position: -500% 50%;
+  background-position: center;
   display: grid;
   background-repeat: no-repeat;
   justify-content: center;
