@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const slug = require('mongoose-slug-updater')
 const mongooseDelete = require('mongoose-delete');
-
+const User = require('./User')
 
 const Blog = new Schema({
     blogName: {
@@ -21,11 +21,10 @@ const Blog = new Schema({
         type: String,
         required: true
     },
-    idUser: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    }
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
 }, { timestamps: true })
 
 //add plugin

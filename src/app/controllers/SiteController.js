@@ -1,20 +1,33 @@
 const User = require('../models/User');
-const { mongooseToObject } = require('../../ulti/mongoose')
+const Blog = require('../models/Blog');
+const { multipleMongooseToObject } = require('../../ulti/mongoose')
 
 class SiteController {
     //[GET] /
     index(req, res, next) {
+        const defaultAvatar = 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg'
+        let data = {};
         if (req.session.username) {
             User.findOne({ username: req.session.username })
                 .then(user => {
-                    res.render('home', { isLoginView: true, username: req.session.username, avatar: user ? user.avatar : null });
+                    data.isLoginView = true;
+                    data.username = req.session.username;
+                    data.avatar = user && user.avatar ? user.avatar : defaultAvatar;
+                    return Blog.find({}).populate('author');
                 })
-                .catch(err => {
-                    console.log(err);
-                    res.render('home', { isLoginView: true, username: req.session.username, avatar: 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg' });
-                });
+                .then(blogs => {
+                    data.blogs = multipleMongooseToObject(blogs)
+                    res.render('home', data)
+                })
+                .catch(next);
         } else {
-            res.render('home');
+            Blog.find({}).populate('author')
+                .then(blogs => {
+                    data.isLoginView = false;
+                    data.blogs = multipleMongooseToObject(blogs);
+                    res.render('home', data);
+                })
+                .catch(next)
         }
     }
 

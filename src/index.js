@@ -7,6 +7,10 @@ const db = require('./config/db');
 const app = express();
 const port = 3000;
 
+const moment = require('moment');
+moment.locale('vi');
+
+
 const flash = require('express-flash');
 const session = require('express-session');
 
@@ -40,17 +44,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.engine(
     'hbs',
     exphbs.engine({
-        extname: '.hbs'
+        extname: '.hbs',
+        helpers: {
+            moment: function (date, format) {
+                return moment(date).format(format);
+            }
+        }
     }))
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
 //Route init
 route(app);
-
-app.get('/', (req, res) => {
-    res.render('home')
-})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
