@@ -18,9 +18,9 @@
     <div class="post container">
         {{#each blogs}}
         <div class="post-box {{this.blogType}}">
-            <img src="{{this.blogImage}}" class="post-img">
+            <a href="/blogs/{{this.slug}}"><img src="{{this.blogImage}}" class="post-img"></a>
             <h2 class="category">{{this.blogType}}</h2>
-            <a href="#" class="post-title">{{this.blogName}}</a>
+            <a href="/blogs/{{this.slug}}" class="post-title">{{this.blogName}}</a>
             <span class="post-date">{{moment this.updatedAt "LL"}}</span>
             <p class="post-description">{{this.blogInfo}}</p>
             <div class="profile">

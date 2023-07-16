@@ -25,6 +25,11 @@ const Blog = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    slug: {
+        type: String,
+        slug: "blogName",
+        unique: true
+    }
 }, { timestamps: true })
 
 //add plugin
