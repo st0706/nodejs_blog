@@ -5,7 +5,7 @@
   </div>
 </section> --}}
 
-<div class="container mt-5">
+<div class="container mt-5">50
   <div class="row">
     <div class="col-md-8 mx-auto" style="width: 85%;">
       <div class="card">
@@ -26,15 +26,20 @@
         </button>
       </div>
       <div id="comment-section" class="collapse mt-3">
+        {{#if isLoginView}}
         <div class="card">
           <div class="card-body">
             <form class="write-cmt" method="POST" action="/blogs/write-comment">
               <div class="form-group">
                 <input type="hidden" name="blogSlug" value="{{blog.slug}}">
                 <label for="comment">Bình luận:</label>
-                <textarea name="comment" class="form-control" id="comment" rows="3"></textarea>
+                <textarea required name="comment" class="form-control" id="comment" rows="3"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Gửi</button>
+              <button id="send-cmt" type="submit" class="btn btn-primary">Gửi</button>
+              {{else}}
+              <p>Vui lòng đăng nhập để bình luận.</p>
+              <a href="/authen/login" class="btn btn-primary">Đăng nhập</a>
+              {{/if}}
             </form>
           </div>
         </div>
@@ -97,4 +102,5 @@
       this.querySelector(".like-count").innerHTML = count;
     });
   }
+
 </script>

@@ -33,7 +33,10 @@ class BlogController {
                 .then(blog => {
                     data.blog = mongooseToObject(blog)
                     data.isLoginView = false;
-
+                    return Comment.find({ blog: data.blog._id }).populate('user')
+                })
+                .then(comments => {
+                    data.comments = multipleMongooseToObject(comments)
                     res.render('blogs/view-blog', data)
                 })
                 .catch(next)
