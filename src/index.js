@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const route = require('./routes');
 const db = require('./config/db');
 const app = express();
+const helpers = require('handlebars-helpers')();
 const port = 3000;
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20');
@@ -26,7 +27,7 @@ app.use(session({
     secret: 'mynodejsblogabc123@@@',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 1000 * 60 * 5 }
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }
 }));
 app.use(passport.session());
 passport.use(
@@ -104,6 +105,9 @@ app.engine(
         helpers: {
             moment: function (date, format) {
                 return moment(date).format(format);
+            },
+            eq: function (a, b) {
+                return a === b;
             }
         }
     }))

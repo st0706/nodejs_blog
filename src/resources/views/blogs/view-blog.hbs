@@ -5,7 +5,7 @@
   </div>
 </section> --}}
 
-<div class="container mt-5">50
+<div class="container mt-5">
   <div class="row">
     <div class="col-md-8 mx-auto" style="width: 85%;">
       <div class="card">
@@ -50,9 +50,11 @@
             {{#each comments}}
             <div class="media">
               <img src="{{this.user.avatar}}" class="mr-3" alt="..." style="height: 40px; width: 40px">
-              <div class="media-body">
-                <h5 class="mt-0">{{this.user.username}}</h5>
-                {{this.content}}
+              <div data-comment-id={{this._id}} class="media-body d-flex justify-content-between">
+                <div class="comment-content">
+                  <h5 class="mt-0">{{this.user.username}}</h5>
+                  {{this.content}}
+                </div>
               </div>
             </div>
             <hr>
@@ -63,8 +65,90 @@
     </div>
   </div>
 </div>
+</div>
+
+{{#if (eq blog.author.username username)}}
+<script>
+  // Sử dụng selector querySelectorAll để chọn tất cả các phần tử có class là "media-body"
+  const mediaBodies = document.querySelectorAll('.media-body');
+
+  // Sử dụng phương thức forEach để lặp qua từng phần tử media-body
+  mediaBodies.forEach(mediaBody => {
+    const commentId = mediaBody.getAttribute('data-comment-id');
+
+    // Tạo một phần tử HTML mới
+    const deleteBtn = document.createElement('div');
+    deleteBtn.classList.add('delete-cmt');
+    deleteBtn.innerHTML = `
+      <button data-toggle="modal" data-id="${commentId}" data-target="#delete-modal" class="btn btn-danger delete-comment">Xóa</button>
+    `;
+    // Thêm phần tử deleteBtn vào phần tử media-body
+    mediaBody.appendChild(deleteBtn);
+  });
+</script>
+{{/if}}
+
+{{!-- Confirm delete comment --}}
+<div id="delete-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xóa comment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn chắc chắn muốn xóa comment này?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        <button id="btn-delete-cmt" type="button" class="btn btn-danger">Xóa bỏ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{comment._id}}
+{{!-- Delete hidden form --}}
+<form name="delete-cmt-form" method="POST"></form>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var commentId;
+    var deleteForm = document.forms['delete-cmt-form'];
+    var btnDeleteCmt = document.getElementById('btn-delete-cmt');
+
+    // When dialog confirm clicked
+    $('#delete-modal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      commentId = button.data('id');
+    });
+
+    // When delete course btn clicked
+    btnDeleteCmt.onclick = function () {
+      deleteForm.action = '/blogs/' + commentId + '?_method=DELETE';
+      deleteForm.submit();
+    }
+  })
+
+  var likeButtons = document.querySelectorAll(".like-button");
+  for (var i = 0; i < likeButtons.length; i++) {
+    likeButtons[i].addEventListener("click", function () {
+      var count = parseInt(this.querySelector(".like-count").innerHTML);
+      if (this.classList.contains("liked")) {
+        count -= 1;
+        this.classList.remove("liked");
+      } else {
+        count += 1;
+        this.classList.add("liked");
+      }
+      this.querySelector(".like-count").innerHTML = count;
+    });
+  }
 
 
+</script>
 
 <!-- Pagination -->
 <nav class="my-4" aria-label="...">
@@ -82,25 +166,6 @@
     </li>
   </ul>
 </nav>
-
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
-
-<script>
-  var likeButtons = document.querySelectorAll(".like-button");
-  for (var i = 0; i < likeButtons.length; i++) {
-    likeButtons[i].addEventListener("click", function () {
-      var count = parseInt(this.querySelector(".like-count").innerHTML);
-      if (this.classList.contains("liked")) {
-        count -= 1;
-        this.classList.remove("liked");
-      } else {
-        count += 1;
-        this.classList.add("liked");
-      }
-      this.querySelector(".like-count").innerHTML = count;
-    });
-  }
-
-</script>

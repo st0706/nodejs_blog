@@ -92,6 +92,13 @@ class BlogController {
             res.json("chua dang nhap")
         }
     }
+
+    //[DELETE] /blogs/:id/
+    destroy(req, res, next) {
+        Comment.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('back'))
+            .catch(next)
+    }
 }
 
 module.exports = new BlogController();
