@@ -55,6 +55,14 @@
                   <h5 class="mt-0">{{this.user.username}}</h5>
                   {{this.content}}
                 </div>
+                {{#if ../username}}
+                {{#if (or (eq this.user.username ../username) (eq blog.author.username ../username))}}
+                <div class="delete-cmt">
+                  <button data-toggle="modal" data-id={{this._id}} data-target="#delete-modal"
+                    class="btn btn-danger delete-comment">Xóa</button>
+                </div>
+                {{/if}}
+                {{/if}}
               </div>
             </div>
             <hr>
@@ -67,26 +75,6 @@
 </div>
 </div>
 
-{{#if (eq blog.author.username username)}}
-<script>
-  // Sử dụng selector querySelectorAll để chọn tất cả các phần tử có class là "media-body"
-  const mediaBodies = document.querySelectorAll('.media-body');
-
-  // Sử dụng phương thức forEach để lặp qua từng phần tử media-body
-  mediaBodies.forEach(mediaBody => {
-    const commentId = mediaBody.getAttribute('data-comment-id');
-
-    // Tạo một phần tử HTML mới
-    const deleteBtn = document.createElement('div');
-    deleteBtn.classList.add('delete-cmt');
-    deleteBtn.innerHTML = `
-      <button data-toggle="modal" data-id="${commentId}" data-target="#delete-modal" class="btn btn-danger delete-comment">Xóa</button>
-    `;
-    // Thêm phần tử deleteBtn vào phần tử media-body
-    mediaBody.appendChild(deleteBtn);
-  });
-</script>
-{{/if}}
 
 {{!-- Confirm delete comment --}}
 <div id="delete-modal" class="modal" tabindex="-1" role="dialog">

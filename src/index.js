@@ -52,6 +52,7 @@ passport.use(
                             .catch((err) => done(err));
                     } else {
                         user.email = profile.emails[0].value;
+                        avatar: profile.photos[0].value;
                         user.save()
                             .then(() => done(null, profile))
                             .catch((err) => done(err));
@@ -98,6 +99,7 @@ app.use(express.json());
 db.connect();
 
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.engine(
     'hbs',
     exphbs.engine({
@@ -108,6 +110,9 @@ app.engine(
             },
             eq: function (a, b) {
                 return a === b;
+            },
+            or: function (a, b) {
+                return a || b;
             }
         }
     }))

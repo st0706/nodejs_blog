@@ -9,10 +9,13 @@
 <div class="container">
 
     <div class="post-filter container">
-        <span class="filter-item active-filter" data-filter="all">All</span>
-        <span class="filter-item" data-filter="tech">Tech</span>
-        <span class="filter-item" data-filter="food">Food</span>
-        <span class="filter-item" data-filter="news">News</span>
+        <a href="/"><span class="filter-item {{#unless queryType}}active-filter{{/unless}}">All</span></a>
+        {{#each blogTypes}}
+        <a href="/?blogType={{this}}">
+            <span class="filter-item {{#if (eq ../queryType this)}} active-filter {{/if}}"
+                data-filter="{{this}} ">{{this}}</span>
+        </a>
+        {{/each}}
     </div>
 
     <div class="post container">
