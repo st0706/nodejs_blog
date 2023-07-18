@@ -61,6 +61,16 @@ class BlogController {
         }
     }
 
+    //[POST] /blogs/stored
+    stored(req, res, next) {
+        const formData = req.body
+        // const course = new Course(formData)
+        // course.save()
+        //     .then(() => res.redirect('/'))
+        //     .catch(next)
+        res.json(formData)
+    }
+
     write(req, res, next) {
         let isLoginView = false;
         let usernameID;
