@@ -36,11 +36,11 @@
             </div>
             <div class="form-group">
                 <label for="blogImage">Thêm ảnh cho bài viết:</label>
-                <input name="blogImage" type="text" class="form-control-file" id="blogImage" />
+                <input required name="blogImage" type="text" class="form-control-file" id="blogImage" />
             </div>
             <div class="form-group">
                 <label for="select-input">Chủ đề bài viết:</label>
-                <input name="blogType" class="form-control" id="select-input">
+                <input required name="blogType" class="form-control" id="select-input">
             </div>
             <button type="submit" class="btn btn-primary">Gửi</button>
         </form>
@@ -74,11 +74,22 @@
             var title = titleDiv.innerHTML;
             var content = contentDiv.innerHTML;
 
+            if (title.trim() === '') {
+                alert('Vui lòng nhập tiêu đề.');
+                return;
+            }
+
+            if (content.trim() === '') {
+                alert('Vui lòng nhập nội dung chính.');
+                return;
+            }
+
             titleInput.value = title;
             contentInput.value = content;
 
             form.submit();
         });
+
     </script>
 
 
