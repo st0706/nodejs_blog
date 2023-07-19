@@ -10,10 +10,18 @@
     <div class="col-md-8 mx-auto" style="width: 85%;">
       <div class="card">
         <div class="card-body">
-          <h4>Tác giả: {{blog.author.username}}</h4>
-          <h5 class="card-title">{{blog.blogName}}</h5>
-          <img src="{{blog.blogImage}}" alt="">
-          <p class="card-text">{{blog.blogInfo}}</p>
+          <h4 class="card-title">{{{blog.blogName}}}</h4>
+          <h5 style="text-transform: none;
+            font-size: 14px;
+            letter-spacing: 0;
+            color: gray;
+            border-top: 1px solid #e2e2e2;
+            border-bottom: 1px solid #e2e2e2;
+            padding: 10px;
+            background: #f9f9f9;
+            margin-bottom: 30px;">Tác giả: {{blog.author.username}}</h5>
+          <img src="{{blog.blogImage}}" alt="" style="width: 80%; margin-bottom: 20px;">
+          <p class="card-text" style="text-align: justify;">{{{blog.blogInfo}}}</p>
         </div>
       </div>
       <div class="mt-3">
@@ -49,7 +57,9 @@
             <hr>
             {{#each comments}}
             <div class="media">
-              <img src="{{this.user.avatar}}" class="mr-3" alt="..." style="height: 40px; width: 40px">
+              <img src={{#if this.user.avatar}} "{{this.user.avatar}}"
+                {{else}} "https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg"
+                {{/if}} class="mr-3" alt="..." style="height: 40px; width: 40px">
               <div data-comment-id={{this._id}} class="media-body d-flex justify-content-between">
                 <div class="comment-content">
                   <h5 class="mt-0">{{this.user.username}}</h5>

@@ -1,6 +1,6 @@
 <section class="home" id="home">
     <div class="home-text container">
-        <h2 class="home-title">Trend Blogger</h2>
+        <h2 class="home-title">My Blog</h2>
         <span class="home-subtitle">Your source of great content</span>
     </div>
 </section>
@@ -23,9 +23,9 @@
         <div class="post-box {{this.blogType}}">
             <a href="/blogs/{{this.slug}}"><img src="{{this.blogImage}}" class="post-img"></a>
             <h2 class="category">{{this.blogType}}</h2>
-            <a href="/blogs/{{this.slug}}" class="post-title">{{this.blogName}}</a>
+            <a href="/blogs/{{this.slug}}" class="post-title">{{{this.blogName}}}</a>
             <span class="post-date">{{moment this.updatedAt "LL"}}</span>
-            <p class="post-description">{{this.blogInfo}}</p>
+            <p class="post-description">{{{this.blogInfo}}}</p>
             <div class="profile">
                 <img src="{{this.author.avatar}}" alt="" class="profile-img">
                 <span class="profile-name">{{this.author.username}}</span>

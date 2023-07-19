@@ -13,6 +13,7 @@ const User = require('./app/models/User');
 const moment = require('moment');
 const flash = require('express-flash');
 const session = require('express-session');
+
 moment.locale('vi');
 app.use(passport.initialize());
 passport.serializeUser((user, done) => {
@@ -113,7 +114,7 @@ app.engine(
             },
             or: function (a, b) {
                 return a || b;
-            }
+            },
         }
     }))
 app.set('view engine', 'hbs');

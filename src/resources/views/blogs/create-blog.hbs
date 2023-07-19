@@ -21,26 +21,26 @@
             </div>
 
         </div>
-        <form>
+        <form method="POST" action="/blogs/stored" id="myForm" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Title:</label>
-                <div id="titleEditor" contenteditable="true" style="border:1px solid; min-height:30px"></div>
+                <div name="blogName" id="titleEditor" contenteditable="true" style="border:1px solid; min-height:30px">
+                </div>
+                <input type="hidden" name="blogName" id="blogName">
             </div>
             <div class="form-outline">
                 <label class="form-label" for="textAreaContent">Main Content</label>
-                <div id="contentEditor" contenteditable="true" style="border:1px solid; min-height:300px"></div>
+                <div name="blogInfo" id="contentEditor" contenteditable="true"
+                    style="border:1px solid; min-height:300px"></div>
+                <input type="hidden" name="blogInfo" id="blogInfo">
             </div>
             <div class="form-group">
-                <label for="attachment">Attachment:</label>
-                <input type="file" class="form-control-file" id="attachment" />
+                <label for="blogImage">Thêm ảnh cho bài viết:</label>
+                <input name="blogImage" type="text" class="form-control-file" id="blogImage" />
             </div>
             <div class="form-group">
-                <label for="select-input">Select type:</label>
-                <select class="form-control" id="select-input">
-                    <option value="SciTech">Science & Technology</option>
-                    <option value="SocialLife">Social Life</option>
-                    <option value="Intellectuals">Intellectuals</option>
-                </select>
+                <label for="select-input">Chủ đề bài viết:</label>
+                <input name="blogType" class="form-control" id="select-input">
             </div>
             <button type="submit" class="btn btn-primary">Gửi</button>
         </form>
@@ -61,6 +61,24 @@
                 selection.insertNode(span);
             }
         }
+
+        var form = document.getElementById('myForm');
+        var titleDiv = document.getElementById('titleEditor');
+        var contentDiv = document.getElementById('contentEditor');
+        var titleInput = document.getElementById('blogName');
+        var contentInput = document.getElementById('blogInfo');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var title = titleDiv.innerHTML;
+            var content = contentDiv.innerHTML;
+
+            titleInput.value = title;
+            contentInput.value = content;
+
+            form.submit();
+        });
     </script>
 
 

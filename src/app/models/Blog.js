@@ -30,10 +30,6 @@ const Blog = new Schema({
         slug: "blogName",
         unique: true
     },
-    likes: {
-        type: Number,
-        default: 0,
-    },
 }, { timestamps: true })
 
 //add plugin
