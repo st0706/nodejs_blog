@@ -27,12 +27,14 @@
                 <div name="blogName" id="titleEditor" contenteditable="true" style="border:1px solid; min-height:30px">
                 </div>
                 <input type="hidden" name="blogName" id="blogName">
+                <input type="hidden" name="blogPreviewName" id="blogPreviewName">
             </div>
             <div class="form-outline">
                 <label class="form-label" for="textAreaContent">Main Content</label>
                 <div name="blogInfo" id="contentEditor" contenteditable="true"
                     style="border:1px solid; min-height:300px"></div>
                 <input type="hidden" name="blogInfo" id="blogInfo">
+                <input type="hidden" name="blogPreviewInfo" id="blogPreviewInfo">
             </div>
             <div class="form-group">
                 <label for="blogImage">Thêm ảnh cho bài viết:</label>
@@ -44,6 +46,9 @@
             </div>
             <button type="submit" class="btn btn-primary">Gửi</button>
         </form>
+
+
+
     </div>
     <script>
         function changeFontSize() {
@@ -66,14 +71,17 @@
         var titleDiv = document.getElementById('titleEditor');
         var contentDiv = document.getElementById('contentEditor');
         var titleInput = document.getElementById('blogName');
+        var previewtitleInput = document.getElementById('blogPreviewName');
         var contentInput = document.getElementById('blogInfo');
+        var previewcontentInput = document.getElementById('blogPreviewInfo');
 
         form.addEventListener('submit', function (event) {
             event.preventDefault();
 
             var title = titleDiv.innerHTML;
             var content = contentDiv.innerHTML;
-
+            var previewtitle = titleDiv.innerText;
+            var previewcontent = contentDiv.innerText;
             if (title.trim() === '') {
                 alert('Vui lòng nhập tiêu đề.');
                 return;
@@ -86,7 +94,8 @@
 
             titleInput.value = title;
             contentInput.value = content;
-
+            previewtitleInput.value = previewtitle
+            previewcontentInput.value = previewcontent
             form.submit();
         });
 

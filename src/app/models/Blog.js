@@ -9,11 +9,19 @@ const Blog = new Schema({
         type: String,
         required: true
     },
+    blogPreviewName: {
+        type: String,
+        required: true
+    },
     blogImage: {
         type: String,
         required: true
     },
     blogInfo: {
+        type: String,
+        required: true
+    },
+    blogPreviewInfo: {
         type: String,
         required: true
     },
