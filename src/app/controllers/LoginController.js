@@ -16,7 +16,7 @@ class LoginController {
         })
             .then(data => {
                 if (data) {
-                    req.session._id = data._id
+                    req.session.userId = data._id
                     req.session.username = data.username
                     res.redirect('/');
                 }

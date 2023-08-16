@@ -4,6 +4,7 @@ const Comment = require('../models/Comment');
 const { mongooseToObject } = require('../../ulti/mongoose')
 const { multipleMongooseToObject } = require('../../ulti/mongoose')
 const defaultAvatar = 'https://t4.ftcdn.net/jpg/05/49/98/39/360_F_549983970_bRCkYfk0P6PP5fKbMhZMIb07mCJ6esXL.jpg'
+const mongoose = require('mongoose');
 
 class BlogController {
     //[GET] /blogs/:slug
@@ -65,7 +66,8 @@ class BlogController {
 
     stored(req, res, next) {
         const formData = req.body;
-        formData.author = req.session._id;
+        const authorObjectId = new mongoose.Types.ObjectId(req.session.userId);
+        formData.author = authorObjectId;
         const newBlog = new Blog(formData);
         newBlog.save()
             .then(() => res.redirect('/'))

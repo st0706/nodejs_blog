@@ -62,7 +62,7 @@
                   {{this.content}}
                 </div>
                 {{#if ../username}}
-                {{#if (or (eq this.user.username ../username) (eq blog.author.username ../username))}}
+                {{#if (or (eq this.user.username ../username) (eq ../blog.author.username ../username))}}
                 <div class="delete-cmt">
                   <button data-toggle="modal" data-id={{this._id}} data-target="#delete-modal"
                     class="btn btn-danger delete-comment">Xóa</button>
