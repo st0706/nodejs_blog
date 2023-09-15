@@ -38,21 +38,17 @@
       </div>
 
       <!-- Right links -->
-      <ul class="navbar-nav ms-auto d-flex flex-row">
-
-        <!-- Avatar -->
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
-            id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-            <img src="{{avatar}}" class="rounded-circle" height="22" alt="Avatar" loading="lazy" />
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-            <li>
-              <a class="dropdown-item" href="/logout">Logout</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <!-- Avatar -->
+      <span class="dropdown">
+        <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-toggle="dropdown" role="button"
+          aria-expanded="false"><img src="{{avatar}}" class="rounded-circle" height="22" alt="Avatar" loading="lazy" />
+          <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+            <a class="dropdown-item" href="/logout">Đăng xuất</a>
+          </li>
+        </ul>
+      </span>
     </div>
     <!-- Container wrapper -->
   </nav>

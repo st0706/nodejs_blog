@@ -8,23 +8,23 @@
                             <h2 class="text-uppercase text-center mb-5">Tạo tài khoản</h2>
 
                             <form method="POST" action="/authen/users/store" onsubmit="checkForm(event)">
-                                <div class="form-outline mb-4">
-                                    <input id="username" name="username" type="text"
-                                        class="form-control form-control-lg" placeholder="Tài khoản" required />
+                                <div class="form-group form-outline mb-4">
+                                    <input id="username" name="username" type="text" class="form-control"
+                                        placeholder="Tài khoản" required />
                                 </div>
 
-                                <div class="form-outline mb-4">
-                                    <input id="email" name="email" type="email" class="form-control form-control-lg"
+                                <div class="form-group form-outline mb-4">
+                                    <input id="email" name="email" type="email" class="form-control "
                                         placeholder="Email của bạn" required />
                                 </div>
 
-                                <div class="form-outline mb-4">
-                                    <input id="password" name="password" type="password"
-                                        class="form-control form-control-lg" placeholder="Mật khẩu" required />
+                                <div class="form-group form-outline mb-4">
+                                    <input id="password" name="password" type="password" class="form-control "
+                                        placeholder="Mật khẩu" required />
                                 </div>
 
-                                <div class="form-outline mb-4">
-                                    <input id="repeat-password" type="password" class="form-control form-control-lg"
+                                <div class="form-group form-outline mb-4">
+                                    <input id="repeat-password" type="password" class="form-control "
                                         placeholder="Nhập lại mật khẩu" onchange="checkPassword()" required />
                                 </div>
                                 <div id="password-alert" style="display: none; text-align: center;"
